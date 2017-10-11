@@ -3,17 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.yang</groupId>
-    <artifactId>bigdata</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.asiainfo.aistream</groupId>
+    <artifactId>aistream</artifactId>
     <packaging>jar</packaging>
-
-    <!--项目依赖版本号配置-->
+    <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>1.8</java.version>
         <spark.version>1.6.1</spark.version>
         <scala.binary.version>2.10</scala.binary.version>
+        <kafka.version>2.6.4</kafka.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <slf4j.version>1.7.10</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
@@ -22,7 +20,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <!--项目依赖包配置-->
     <dependencies>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -36,11 +33,27 @@
             </exclusions>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_${scala.binary.version}</artifactId>
             <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -50,8 +63,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-    <!--构建配置-->
     <build>
         <finalName>spark-app</finalName>
         <pluginManagement>
@@ -108,7 +119,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>com.yang.spark.SparkReadHdfs</mainClass>
+                            <mainClass>com.asiainfo.rule.RuleSender</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -121,8 +132,8 @@
                         </goals>
                     </execution>
                 </executions>
+
             </plugin>
         </plugins>
     </build>
-
 </project>
