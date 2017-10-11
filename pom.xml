@@ -108,7 +108,7 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>com.asiainfo.rule.RuleSender</mainClass>
+                            <mainClass>com.yang.spark.SparkReadHdfs</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
